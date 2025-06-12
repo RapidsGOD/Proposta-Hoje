@@ -56,7 +56,7 @@ body {
 }
 </style>
 </head>
-<body><audio autoplay="True" id="bgm" loop="True" src="audio/musica1.mp3" style="display: none;"></audio>
+<body><audio autoplay="" id="bgm" loop="" muted="" src="audio/musica1.mp3" style="display: none;"></audio>
 <script>
 function criarEmojis() {
   for (let i = 0; i < 10; i++) {
@@ -75,6 +75,13 @@ window.onload = criarEmojis;
 </script><div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); text-align: center;"><img alt="Cachorro Safado" src="img/foto1.png" style="max-width: 300px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"/><p style="font-size: 22px; margin-top: 20px; font-weight: bold;">Hoje a noite depois da janta, na minha casa 😏</p></div><button id="toggleBtn" style="position: fixed; bottom: 20px; right: 20px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 10;">⏸️</button><script>
 const audio = document.getElementById('bgm');
 const btn = document.getElementById('toggleBtn');
+
+// garantir que seja desbloqueado após clique (alguns navegadores bloqueiam autoplay com som)
+document.body.addEventListener('click', () => {
+  audio.muted = false;
+  audio.play();
+}, { once: true });
+
 btn.addEventListener('click', () => {
   if (audio.paused) {
     audio.play();
