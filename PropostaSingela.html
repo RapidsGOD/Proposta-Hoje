@@ -49,10 +49,14 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    </style>
+    
+body {
+  background: url('img/foto1.png') no-repeat center center fixed;
+  background-size: cover;
+}
+</style>
 </head>
-<body>
-<h1>Proposta Singela</h1><div style="font-size: 44px; margin-top: 15px;">😏</div>
+<body><audio autoplay="True" id="bgm" loop="True" src="audio/musica1.mp3" style="display: none;"></audio>
 <script>
 function criarEmojis() {
   for (let i = 0; i < 10; i++) {
@@ -68,5 +72,17 @@ function criarEmojis() {
 }
 setInterval(criarEmojis, 6000);
 window.onload = criarEmojis;
+</script><div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); text-align: center;"><img alt="Cachorro Safado" src="img/foto1.png" style="max-width: 300px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);"/><p style="font-size: 22px; margin-top: 20px; font-weight: bold;">Hoje a noite depois da janta, na minha casa 😏</p></div><button id="toggleBtn" style="position: fixed; bottom: 20px; right: 20px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.3); z-index: 10;">⏸️</button><script>
+const audio = document.getElementById('bgm');
+const btn = document.getElementById('toggleBtn');
+btn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = '⏸️';
+  } else {
+    audio.pause();
+    btn.textContent = '▶️';
+  }
+});
 </script></body>
 </html>
