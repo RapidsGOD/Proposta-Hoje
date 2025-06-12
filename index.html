@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Proposta Especial</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe4ec, #e9d6f7);
+      background-size: 400% 400%;
+      animation: bgGradient 15s ease infinite;
+      font-family: 'Segoe UI', sans-serif;
+      color: #4a004a;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @keyframes bgGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px 60px;
+      border-radius: 24px;
+      box-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+      text-align: center;
+      position: absolute;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 30px;
+      color: #590038;
+      text-shadow: 0 0 6px #ffb6c1;
+    }
+
+    .btns {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 14px 32px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background-color: #ff80ab;
+      color: white;
+      box-shadow: 0 0 12px #ff4081;
+      transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #ec407a;
+      transform: scale(1.05);
+    }
+
+    .emoji {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      opacity: 0.7;
+      animation: fall 10s linear forwards, rotate 6s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(-20px) translateY(30vh);
+      }
+      50% {
+        transform: translateX(20px) translateY(60vh);
+      }
+      75% {
+        transform: translateX(-10px) translateY(90vh);
+      }
+      100% {
+        transform: translateX(0px) translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="moldura">
+    <h1>Eai amor, hoje tem?</h1>
+    <div class="btns">
+      <a href="Homenagem.html" class="btn">Sim</a>
+      <button class="btn" onclick="desviar()">Não</button>
+    </div>
+    <div style="font-size: 42px; margin-top: 20px;">😏</div>
+  </div>
+
+  <script>
+    const moldura = document.getElementById('moldura');
+
+    function desviar() {
+      const x = Math.random() * (window.innerWidth - 300);
+      const y = Math.random() * (window.innerHeight - 200);
+      moldura.style.left = x + "px";
+      moldura.style.top = y + "px";
+    }
+
+    function criarEmoji() {
+      const emoji = document.createElement("div");
+      emoji.className = "emoji";
+      emoji.innerText = "😏";
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.fontSize = (Math.random() * 20 + 20) + "px";
+      emoji.style.animationDuration = (Math.random() * 8 + 4) + "s";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 12000);
+    }
+
+    setInterval(criarEmoji, 400);
+    for (let i = 0; i < 15; i++) criarEmoji();
+  </script>
+
+</body>
+</html>
